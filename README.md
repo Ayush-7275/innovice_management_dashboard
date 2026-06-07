@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ⚡ Powerplay: B2B Invoice Management Dashboard
 
-## Getting Started
+A full-stack, responsive dashboard built for tracking, creating, and managing client invoices. Developed as a take-home assignment for the Software Development Engineer Internship at Powerplay.
 
-First, run the development server:
+![alt text](image.png)
+![alt text](image-1.png)
+![alt text](image-2.png)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Tech Stack
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Frontend:**
+* Next.js 15 (App Router)
+* React & TypeScript
+* Tailwind CSS
+* Shadcn UI & Radix UI (Headless components)
+* Lucide React (Icons)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**Backend:**
+* Node.js & Express
+* MongoDB & Mongoose (ODM)
+* CORS & Dotenv
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## ✨ Key Features
 
-To learn more about Next.js, take a look at the following resources:
+1. **Robust Data Grid:** Paginated table displaying invoice records (20 items per page) powered by server-side fetching.
+2. **Dynamic Filtering & Sorting:** Real-time search by Invoice ID, and server-side filtering by Tax Rate, Status, and Date Sorting.
+3. **Advanced MongoDB Aggregations:** A dedicated Summary Dashboard highlighting the "Top 5 Customers" calculated via complex `$lookup` and `$group` aggregation pipelines.
+4. **Dynamic Routing:** Individual, dynamic customer profile pages (`/customer/[id]`) displaying summarized metrics (Total Revenue, Total Paid, Outstanding Due) utilizing JavaScript `.reduce()` calculations.
+5. **Seamless CRUD Operations:** A centralized, state-aware Modal component handling both the creation of new invoices (POST) and the real-time editing/recalculation of existing ones (PUT).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🛠️ Local Setup & Quick Start
 
-## Deploy on Vercel
+To run this project locally, you will need to run bun run dev.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 1. Database Setup
+1. Create a `.env` file in the `/backend` directory.
+2. Add your MongoDB connection string:
+   `MONGO_URI=mongodb+srv://<username>:<password>@cluster...`
+3. Run the database seeder to populate dummy data:
+   ```bash
+   cd backend
+   bun run seed.ts
