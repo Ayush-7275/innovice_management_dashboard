@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Testing
+coverage/
+
+# Next.js
+.next/
+out/
+
+# Env files (NEVER upload your database password!)
+.env
+.env.local
+
+# Misc
+.DS_Store
