@@ -32,6 +32,21 @@ A full-stack, responsive dashboard built for tracking, creating, and managing cl
 
 ---
 
+## 🧪 Manual Test Cases Executed
+
+Given the 48-hour timeframe, I opted for comprehensive manual testing of critical user flows and API endpoints to ensure system stability, math accuracy, and data integrity. 
+
+| Feature Category | Test Case Scenario | Expected Result | Status |
+| :--- | :--- | :--- | :--- |
+| **API & Pagination** | Request page 2 of invoices with limit set to 20. | Server returns items 21-40 with accurate `totalRecords` and `totalPages` metadata. | ✅ Pass |
+| **Search Functionality** | Enter partial string `INV-12` in the search bar. | Backend `$regex` matching successfully returns all invoices containing "INV-12". | ✅ Pass |
+| **Filter Integration** | Change UI Status dropdown to "Paid" and Tax to "18%". | React state resets pagination to Page 1; server returns only Paid invoices with 18% tax. | ✅ Pass |
+| **Math Integrity (Create)** | Submit `POST` to create invoice with amount `1000` and tax `18`. | Server ignores frontend total, dynamically calculates `tax = 180` and `total = 1180` before saving. | ✅ Pass |
+| **Data Integrity (Update)** | Submit `PUT` modifying the amount on an existing invoice. | Server updates amount and instantly recalculates the dependent Tax and Total fields. | ✅ Pass |
+| **Error Handling** | Submit `POST` payload missing the required `customerId`. | Server rejects the request and returns a `400 Bad Request` with an error message. | ✅ Pass |
+| **Complex Aggregations** | Verify the "Top 5 Customers" leaderboard data. | The `$lookup` and `$group` pipeline accurately sums lifetime revenue across all seed data. | ✅ Pass |
+| **Dynamic Routing** | Click a specific customer on the Summary page. | Next.js correctly parses the `[id]` parameter and fetches the correct Customer Profile metrics. | ✅ Pass |
+
 ## 🛠️ Local Setup & Quick Start
 
 To run this project locally, you will need to run bun run dev.
@@ -44,3 +59,4 @@ To run this project locally, you will need to run bun run dev.
    ```bash
    cd backend
    bun run seed.ts
+
